@@ -30,173 +30,245 @@
 <div class="shell">
   <aside class="sidebar" id="sidebar" aria-label="Main navigation">
     <div class="brand"><div class="brand-mark"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V9l8-5 8 5v10M8 19v-6h8v6M3 19h18"/><path d="M10 9h.01M14 9h.01"/></svg></div><div><div class="brand-name">Moon Developements</div><div class="brand-sub">Inc. · Property desk</div></div></div>
-    <div class="side-label">Workspace</div>
-    <nav class="nav" id="nav">
-      <button class="nav-btn active" data-page="dashboard"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="11" width="7" height="10" rx="1.5"/><rect x="3" y="14" width="8" height="7" rx="1.5"/></svg>Dashboard</button>
-      <button class="nav-btn" data-page="rent"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6M8 9h.01M12 9h.01M16 9h.01"/></svg>Rent &amp; leases<span class="nav-count" id="lease-nav-count">6</span></button>
-      <button class="nav-btn" data-page="money"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 10h18M7 15h4M7 2v3M17 2v3"/></svg>Money<span class="nav-count" id="money-nav-count">12</span></button>
-    </nav>
-    <div class="side-spacer"></div><div class="side-label">Portfolio</div>
-    <div class="portfolio-card"><div class="portfolio-top">Monthly scheduled rent</div><div class="portfolio-total" id="side-rent">—</div><div class="portfolio-note">Across 4 buildings</div></div>
-    <div class="sidebar-bottom"><div class="avatar">MH</div><div><strong>Morshed Hossain</strong><span>Property manager · Demo</span></div></div>
+    <div class="side-label">Profile</div>
+    <div class="portfolio-card" style="margin:0 5px 14px">
+      <div class="portfolio-top">Signed in as</div>
+      <div class="portfolio-total" style="font-size:15px" id="side-profile">Rental desk</div>
+      <button class="btn small" style="width:100%;margin-top:9px;justify-content:center" data-action="switch-profile">Switch profile</button>
+    </div>
+    <div class="side-label" id="nav-label">Rental</div>
+    <nav class="nav" id="nav"></nav>
+    <div class="sidebar-bottom"><div class="avatar" id="side-avatar">MH</div><div><strong>Morshed Hossain</strong><span>Property manager · Demo</span></div></div>
   </aside>
   <main class="main">
-    <header class="topbar"><div class="top-left"><button class="icon-btn mobile-menu" id="menu-toggle" aria-label="Open navigation"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button><div class="crumb">Workspace <span aria-hidden="true">/</span> <b id="crumb-page">Dashboard</b></div></div><div class="top-actions"><label class="top-search"><span class="sr-only">Search tenants and units</span><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16 16 4 4"/></svg><input id="global-search" placeholder="Search tenants or units…" autocomplete="off"></label><button class="icon-btn" id="notification-button" aria-label="Notifications"><svg viewBox="0 0 24 24"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><span class="dot"></span></button><div class="avatar" aria-label="Morshed Hossain">MH</div></div></header>
+    <header class="topbar"><div class="top-left"><button class="icon-btn mobile-menu" id="menu-toggle" aria-label="Open navigation"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button><div class="crumb"><span id="crumb-profile">Rental desk</span> <span aria-hidden="true">/</span> <b id="crumb-page">Dashboard</b></div></div><div class="top-actions"><label class="top-search"><span class="sr-only">Search clients</span><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16 16 4 4"/></svg><input id="global-search" placeholder="Search clients…" autocomplete="off"></label><div class="avatar">MH</div></div></header>
     <div class="content" id="app"></div>
   </main>
 </div>
-<nav class="mobile-nav" aria-label="Mobile navigation"><button data-page="dashboard" class="active"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="11" width="7" height="10" rx="1.5"/><rect x="3" y="14" width="8" height="7" rx="1.5"/></svg>Home</button><button data-page="rent"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>Rent</button><button data-page="money"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 10h18M7 15h4"/></svg>Money</button></nav>
-<div class="overlay" id="overlay" role="presentation"><section class="dialog" id="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><div class="dialog-head"><div><h2 id="dialog-title">Dialog</h2><p id="dialog-subtitle"></p></div><button class="close" id="dialog-close" aria-label="Close dialog">×</button></div><div class="dialog-body" id="dialog-body"></div><div class="dialog-foot" id="dialog-foot"></div></section></div>
+<div class="overlay" id="overlay" role="presentation"><section class="dialog" id="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><div class="dialog-head"><div><h2 id="dialog-title">Dialog</h2><p id="dialog-subtitle"></p></div><button class="close" id="dialog-close" aria-label="Close dialog">&times;</button></div><div class="dialog-body" id="dialog-body"></div><div class="dialog-foot" id="dialog-foot"></div></section></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
-(() => {
-  const TODAY = new Date('2026-09-28T12:00:00');
-  const moneyFmt = new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:2});
-  const money = n => moneyFmt.format(Number(n||0));
-  const esc = s => String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const addDays = (date,n) => {const d=new Date(date+'T12:00:00');d.setDate(d.getDate()+n);return d.toISOString().slice(0,10)};
-  const dayDelta = date => {const [y,m,d]=date.split('-').map(Number);return Math.round((Date.UTC(y,m-1,d)-Date.UTC(TODAY.getFullYear(),TODAY.getMonth(),TODAY.getDate()))/86400000)};
-  const fmtDate = s => new Date(s+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
-  const monthName = s => new Date(s+'-01T12:00:00').toLocaleDateString('en-US',{month:'long',year:'numeric'});
-  const icons={
-    coin:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5c-.7-.8-1.7-1.2-3-1.2-1.5 0-2.5.7-2.5 1.8 0 3 5.5 1.2 5.5 4.3 0 1.2-1.1 2-2.8 2-1.3 0-2.6-.5-3.3-1.4M12 5.5v13"/></svg>',
-    alert:'<svg viewBox="0 0 24 24"><path d="M12 3 2.8 19h18.4L12 3Z"/><path d="M12 9v4m0 3h.01"/></svg>',
-    calendar:'<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>',
-    home:'<svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1V10Z"/></svg>',
-    plus:'<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>',
-    search:'<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16 16 4 4"/></svg>',
-    arrow:'<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
-    check:'<svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg>'
-  };
-  const buildings=[
-    {id:'moon',name:'Moon 701 Ave C',units:25},
-    {id:'oakline',name:'Oakline House',units:25},
-    {id:'cedar',name:'Cedar Court',units:25},
-    {id:'riverside',name:'Riverside Flats',units:25}
-  ];
-  const firstNames=['Avery','Jordan','Taylor','Morgan','Riley','Casey','Cameron','Quinn','Parker','Jamie','Drew','Reese','Hayden','Rowan','Skyler','Emerson','Finley','Sage','Logan','Dakota','Elliot','Remy','Robin','Blake','Kendall','Micah','Payton','Ari','Charlie','Jules'];
-  const lastNames=['Bennett','Hayes','Brooks','Parker','Reed','Morgan','Ellis','Foster','Price','Cole','Miller','James','Bailey','Rivera','Turner','Ward','Cooper','Bell','Gray','Young','Lewis','Kelly','Cruz','Adams','Hill','Green','Diaz','Scott','Ross','Flores'];
-  const seed=(n)=>{let x=(n*9301+49297)%233280;return x/233280};
-  const units=[];let tenantCounter=0;
-  buildings.forEach((b,bi)=>{for(let u=1;u<=25;u++){
-    const idx=bi*25+u-1, vacant=idx>=95, tenantNames=[];
-    if(!vacant){const count=idx<55?2:1;for(let k=0;k<count;k++){const a=(tenantCounter*7+k*3+idx)%firstNames.length,l=(tenantCounter*11+k*5+idx*2)%lastNames.length;tenantNames.push(`${firstNames[a]} ${lastNames[l]}`);tenantCounter++}}
-    const unitLabel=`${String.fromCharCode(65+bi)}${String(u).padStart(2,'0')}`;
-    const rent=Math.round((1140+seed(idx+8)*920)/10)*10;
-    const urgentLeaseDays={0:2,3:4,5:7,11:12,17:19,25:28,34:34,51:44,68:55,83:60,92:88};
-    const leaseDays=urgentLeaseDays[idx]??(idx%17===0?100+(idx%30):idx%13===0?105+(idx%45):140+(idx%220));
-    const noticeDays=[30,60,90][(idx*7)%3];
-    const j=units.filter(x=>!x.vacant).length;
-    let currentDue=0,arrears=0,currentPaid=0;
-    if(!vacant){if(j<12)currentDue=rent;else if(j<18){currentPaid=Math.round(rent*.62);currentDue=rent-currentPaid}else currentPaid=rent;
-      if(j<6)arrears=Math.round(rent*(j<3?1.65:1));
+(function(){
+  var TODAY='2026-10-15';
+  var moneyFmt=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:2});
+  function money(n){return moneyFmt.format(Number(n||0))}
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+  function fmtDate(s){if(!s)return '—';var p=s.split('-');return new Date(Date.UTC(+p[0],+p[1]-1,+p[2])).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'})}
+  function cents(n){return Math.round(n*100)}
+  function statusPill(s){return '<span class="status '+(s==='Overdue'?'overdue':s==='Partial'?'partial':s==='Paid'||s==='Active'?'paid':s==='Draft'?'draft':s==='Issued'?'due':'vacant')+'">'+esc(s)+'</span>'}
+
+  var PAGE_SIZE=25;
+  var FIRST=['Ana','Michael','Sofia','David','Priya','James','Fatima','Robert','Elena','Daniel','Aisha','Thomas','Maya','Joseph','Leyla','Carlos','Nadia','Samuel','Grace','Hassan','Rita','Peter','Zara','Omar','Ingrid','Victor','Lina','Marcus','Rosa','Andre','Nadia','Chen','Amir','Julia','Ravi','Sara','Miguel','Yuki','Noor','Paolo'];
+  var LAST=['Rahman','Bennett','Hayes','Brooks','Parker','Reed','Morgan','Ellis','Foster','Price','Cole','Miller','James','Bailey','Rivera','Turner','Ward','Cooper','Bell','Gray','Young','Lewis','Kelly','Cruz','Adams','Hill','Green','Diaz','Scott','Ross','Flores','Ahmed','Patel','Nguyen','Kim','Okafor','Silva','Haddad','Novak','Torres'];
+  var BUILDINGS=['Moon 701 Ave C','Oakline House','Cedar Court','Riverside Flats','Harbor View','Sunnyside'];
+  var JOBS=['Roof replacement','Kitchen remodel','Bathroom renovation','Interior painting','Electrical upgrade','Facade repair','Waterproofing','Flooring install','HVAC replacement','Window replacement'];
+  function seeded(n){var x=Math.sin(n*12.9898)*43758.5453;return x-Math.floor(x)}
+  function pick(arr,n){return arr[Math.floor(seeded(n)*arr.length)%arr.length]}
+
+  function makeClients(kind,count,startNum){
+    var out=[],num=startNum;
+    for(var i=0;i<count;i++){
+      var name=(kind==='construction'? LAST[Math.floor(seeded(i*3+1)*LAST.length)]+' '+pick(['LLC','Inc.','Properties','Holdings','Group','Partners'],i*5):'')||'';
+      if(kind==='construction'){name=LAST[Math.floor(seeded(i*3+1)*LAST.length)]+' '+['LLC','Inc.','Properties','Holdings','Group','Partners'][Math.floor(seeded(i*7)*6)];}
+      else{name=FIRST[Math.floor(seeded(i*3+1)*FIRST.length)]+' '+LAST[Math.floor(seeded(i*3+2)*LAST.length)];}
+      var invoiceCount=3+Math.floor(seeded(i*11)*28);
+      var invoices=[];
+      for(var k=0;k<invoiceCount;k++){
+        var total=cents(80+seeded(i*100+k*13)*4200);
+        var paidR=seeded(i*50+k*7);
+        var paid=paidR>0.62?total:paidR>0.3?Math.round(total*paidR):0;
+        var month=((k%12)+1);
+        var inv={id:kind[0]+'-'+(num),number:(kind==='construction'?'C':'' )+(num),clientId:'',client:name,kind:kind,
+          issueDate:'2026-'+String(10-Math.floor(k/4)).padStart(2,'0')+'-'+String(1+(k%27)).padStart(2,'0'),
+          dueDate:'2026-'+String(10-Math.floor(k/4)).padStart(2,'0')+'-'+String(1+(k%27)+14).padStart(2,'0'),
+          lines:kind==='construction'
+            ? [{description:JOBS[Math.floor(seeded(i*17+k)*JOBS.length)],qty:1,rate:Math.round(total/100/50)*50},{description:'Materials & permits',qty:1,rate:Math.round(total/100/40)*40}]
+            : [{description:'Rent · '+['January','February','March','April','May','June','July','August','September','October'][k%10]+' 2026',qty:1,rate:Math.round(total/100/10)*10}],
+          status:paid>=total?'Paid':paid>0?'Partial':'Overdue',paid:paid,balance:total-paid};
+        if(k<3){inv.status='Draft';inv.balance=total;inv.paid=0;}
+        invoices.push(inv);num++;
       }
-    units.push({id:`unit-${idx+1}`,buildingId:b.id,building:b.name,unit:unitLabel,tenantNames,vacant,rent,leaseEnd:addDays('2026-09-28',leaseDays),noticeDays,regulated:idx%4===0?'Regulated':'Market',currentDue,arrears,currentPaid,paidMonth:'September 2026'});
-  }});
-  let expenses=[
-    {id:'e1',date:'2026-09-25',building:'Moon 701 Ave C',unit:'A04',category:'Appliance',description:'Replacement refrigerator',vendor:'Northside Appliance',amount:689.00},
-    {id:'e2',date:'2026-09-22',building:'Oakline House',unit:'B11',category:'Repair',description:'Kitchen sink plumbing',vendor:'Clearflow Plumbing',amount:245.00},
-    {id:'e3',date:'2026-09-18',building:'Cedar Court',unit:'C03',category:'Maintenance',description:'Hallway light fixtures',vendor:'Brightway Electric',amount:318.40},
-    {id:'e4',date:'2026-09-12',building:'Riverside Flats',unit:'D17',category:'Repair',description:'Oven inspection and repair',vendor:'HomeTech Service',amount:176.00},
-    {id:'e5',date:'2026-09-08',building:'Moon 701 Ave C',unit:'A19',category:'Supplies',description:'Smoke detector batteries',vendor:'Property supply run',amount:42.75},
-    {id:'e6',date:'2026-08-29',building:'Oakline House',unit:'B05',category:'Painting',description:'Touch-up after move-out',vendor:'Fresh Coat Team',amount:460.00}
-  ];
-  function seedInvoices(){const out=[];let n=4337;units.filter(u=>!u.vacant).forEach((u,i)=>{
-    if(u.currentDue>0){out.push({id:`i${n}`,number:String(n++),unitId:u.id,tenant:u.tenantNames.join(' & '),building:u.building,unit:u.unit,period:'2026-09',description:'Rent for September 2026',issueDate:'2026-09-01',dueDate:'2026-09-01',total:u.rent,paid:u.currentPaid,balance:u.currentDue,status:u.currentPaid?'Partial':'Overdue',kind:'current',scope:'current'})}
-    if(u.arrears>0){out.push({id:`i${n}`,number:String(n++),unitId:u.id,tenant:u.tenantNames.join(' & '),building:u.building,unit:u.unit,period:'2026-08',description:`Past rent balance · ${u.tenantNames.length>1?'shared lease':'rent'}`,issueDate:'2026-08-01',dueDate:'2026-08-01',total:u.arrears,paid:0,balance:u.arrears,status:'Overdue',kind:'arrears',scope:'arrears'})}
-  });
-  units.filter(u=>!u.vacant&&u.currentDue===0&&u.arrears===0).slice(0,4).forEach((u,i)=>out.push({id:`paid-${i}`,number:String(n++),unitId:u.id,tenant:u.tenantNames.join(' & '),building:u.building,unit:u.unit,period:'2026-09',description:'Rent for September 2026',issueDate:'2026-09-01',dueDate:'2026-09-01',total:u.rent,paid:u.rent,balance:0,status:'Paid',kind:'current',scope:'current'}));
-  return out.sort((a,b)=>b.dueDate.localeCompare(a.dueDate)||Number(b.number)-Number(a.number))}
-  let invoices=seedInvoices();
-  let leaseContacts={};
-  try{const saved=JSON.parse(localStorage.getItem('keyledger-demo-v1')||'{}');if(Array.isArray(saved.invoices))invoices=saved.invoices;if(Array.isArray(saved.expenses))expenses=saved.expenses;if(saved.leaseContacts&&typeof saved.leaseContacts==='object')leaseContacts=saved.leaseContacts}catch{}
-  const persist=()=>localStorage.setItem('keyledger-demo-v1',JSON.stringify({invoices,expenses,leaseContacts}));
-  let page='dashboard',moneyTab='invoices',moneyFilter='all',rentQuery='',rentBuilding='all',rentStatus='all',invoiceQuery='',expenseQuery='',rentPageIndex=0,rentView='roll',leaseWindow=7;
-  const $=s=>document.querySelector(s), app=$('#app'), overlay=$('#overlay'), dialog=$('#dialog');
-  const occupied=()=>units.filter(u=>!u.vacant);
-  const monthlyRent=()=>occupied().reduce((a,u)=>a+u.rent,0);
-  const totalBalance=()=>units.reduce((a,u)=>a+u.currentDue+u.arrears,0);
-  const openInvoices=()=>invoices.filter(i=>i.balance>0);
-  const openUnits=()=>units.filter(u=>!u.vacant&&(u.currentDue+u.arrears)>0).sort((a,b)=>(b.currentDue+b.arrears)-(a.currentDue+a.arrears));
-  const leaseAlerts=(days=60)=>units.filter(u=>!u.vacant&&dayDelta(u.leaseEnd)>=0&&dayDelta(u.leaseEnd)<=days).sort((a,b)=>a.leaseEnd.localeCompare(b.leaseEnd));
-  const contactDate=u=>addDays(u.leaseEnd,-u.noticeDays);
-  const setText=(sel,value)=>{const e=$(sel);if(e)e.textContent=value};
-  function statusPill(s){const cls=s.toLowerCase().replace(/\s/g,'');return `<span class="status ${cls}">${esc(s)}</span>`}
-  function pageHead(title,sub,actions=''){return `<div class="page-head"><div><div class="eyebrow">Property desk · ${fmtDate('2026-09-28')}</div><h1>${title}</h1><p>${sub}</p></div><div class="head-actions">${actions}</div></div>`}
-  function stat(label,value,foot,icon,extra='',cls=''){return `<article class="stat ${cls}"><div class="stat-top"><span class="stat-label">${label}</span><span class="stat-icon">${icons[icon]}</span></div><div class="stat-value">${value}</div><div class="stat-foot">${extra}${foot}</div></article>`}
-  function leaseRows(items){if(!items.length)return '<div class="empty">No lease expirations in this window.</div>';return `<div class="table-wrap"><table class="table lease-table"><thead><tr><th>Tenant &amp; apartment</th><th>Lease ends</th><th>Reach out by</th><th>Follow-up</th><th></th></tr></thead><tbody>${items.map(u=>{const daysToContact=dayDelta(contactDate(u)),contacted=Boolean(leaseContacts[u.id]);const follow=contacted?`<span class="contacted-tag">Contacted</span>`:daysToContact<=0?`<span class="lease-contact-now">Contact now</span>`:`<span class="lease-contact-later">In ${daysToContact} days</span>`;return `<tr><td><div class="lease-name">${esc(u.tenantNames.join(' &amp; '))}</div><div class="secondary-text">${esc(u.building)} · ${esc(u.unit)}</div></td><td><div class="primary-text">${fmtDate(u.leaseEnd)}</div><div class="secondary-text">${dayDelta(u.leaseEnd)} days from now</div></td><td><div class="primary-text">${fmtDate(contactDate(u))}</div><div class="secondary-text">${u.noticeDays}-day notice window</div></td><td>${follow}</td><td>${contacted?`<button class="mini-action" disabled>Done</button>`:`<button class="mini-action" data-action="mark-contacted" data-id="${u.id}">Mark contacted</button>`}</td></tr>`}).join('')}</tbody></table></div>`}
-  function leaseWindowControls(){return `<div class="lease-window" role="group" aria-label="Lease expiration window"><button data-action="lease-window" data-days="7" class="${leaseWindow===7?'active':''}">This week <span>${leaseAlerts(7).length}</span></button><button data-action="lease-window" data-days="60" class="${leaseWindow===60?'active':''}">Next 60 days <span>${leaseAlerts(60).length}</span></button></div>`}
-  function leaseSection(title,subtitle,showFull=true){const items=leaseAlerts(leaseWindow);return `<section class="panel lease-followups"><div class="panel-head lease-head"><div><div class="panel-title">${title}</div><div class="panel-sub">${subtitle}</div></div><div class="lease-window-wrap">${leaseWindowControls()}${showFull?'<button class="btn ghost small" data-action="go-leases">Full schedule</button>':''}</div></div><div class="lease-summary"><strong>${items.length} lease${items.length===1?'':'s'}</strong> ending ${leaseWindow===7?'this week':'in the next 60 days'} · reach out by the date shown for each lease</div>${leaseRows(items)}</section>`}
-  function dashboard(){
-    const open=openUnits(),leases=leaseAlerts(60),due=totalBalance(),monthly=monthlyRent(),collected=monthly-open.reduce((s,u)=>s+u.currentDue,0),pct=Math.round(collected/monthly*100),urgent=open.slice(0,5);
-    const actions=`<button class="btn" data-action="export-csv">Export list</button><button class="btn primary" data-action="new-invoice">${icons.plus} Create invoice</button>`;
-    return `${pageHead('Good morning, Morshed','Here’s what needs your attention across 4 buildings.',actions)}
-      <section class="stats">${stat('September rent collected',money(collected),`<span class="trend">${pct}%</span> of scheduled rent`, 'coin')}${stat('Outstanding balance',money(due),`${open.length} occupied units need follow-up`,'alert','','alert')}${stat('Lease expirations',String(leases.length),`${leaseAlerts(7).length} ending this week · 60-day view`,'calendar')}${stat('Occupied apartments','95 / 100','5 units available across 4 buildings','home')}</section>
-      ${leaseSection('Lease follow-ups','See who is nearing lease end and when to contact them.')}
-      <div class="grid-main"><section class="panel"><div class="panel-head"><div><div class="panel-title">Needs your attention</div><div class="panel-sub">Unpaid rent, sorted by balance</div></div><span class="attention-total">${open.length} units</span></div>
-        ${urgent.length?`<div class="table-wrap"><table class="table"><thead><tr><th>Tenant &amp; unit</th><th>Open amount</th><th>Since</th><th>Action</th></tr></thead><tbody>${urgent.map(u=>{const inv=openInvoices().find(i=>i.unitId===u.id);return `<tr class="attention-row"><td><div class="primary-text">${esc(u.tenantNames[0])}${u.tenantNames.length>1?` &amp; ${esc(u.tenantNames[1])}`:''}</div><div class="secondary-text">${esc(u.building)} · ${esc(u.unit)}</div></td><td><div class="money negative">${money(u.currentDue+u.arrears)}</div><div class="secondary-text">${u.arrears?`${money(u.arrears)} earlier balance`:'Current month'}</div></td><td>${statusPill(u.currentDue?'Overdue':'Partial')}<div class="secondary-text">Sep 1, 2026</div></td><td><div class="row-actions"><button class="mini-action" data-action="remind" data-id="${inv?.id||u.id}">Remind</button><button class="mini-action" data-action="payment" data-id="${inv?.id||u.id}">Record</button></div></td></tr>`}).join('')}</tbody></table></div>`:`<div class="empty">All rent is up to date. Nice work.</div>`}
-        <div class="panel-head" style="padding-top:10px;border-top:1px solid var(--line);justify-content:flex-end"><button class="btn ghost small" data-action="go-rent">View full rent roll ${icons.arrow}</button></div>
-      </section><section class="panel collection"><div class="collection-top"><div><div class="panel-title">September collection</div><div class="panel-sub">Rent received so far</div></div><span class="status paid">${pct}%</span></div><div class="collection-total">${money(collected)} <span>of ${money(monthly)}</span></div><div class="progress"><span style="width:${pct}%"></span></div><div class="collection-foot"><span>${occupied().length-open.length} units paid in full</span><span>${open.length} still open</span></div></section></div>
-      <div class="subgrid"><section class="panel"><div class="panel-head"><div><div class="panel-title">Recent money activity</div><div class="panel-sub">Latest rent and expense updates</div></div><button class="btn ghost small" data-action="go-money">Open money ${icons.arrow}</button></div><div class="activity-list">${recentActivity()}</div></section><section class="panel"><div class="panel-head"><div><div class="panel-title">Your portfolio</div><div class="panel-sub">100 apartments across four buildings</div></div></div><div class="activity-list">${buildings.map(b=>`<div class="activity"><span class="activity-mark">${icons.home}</span><div style="flex:1"><b>${esc(b.name)}</b><small>${b.units} apartments · ${units.filter(u=>u.buildingId===b.id&&!u.vacant).length} occupied</small></div><b>${money(units.filter(u=>u.buildingId===b.id).reduce((s,u)=>s+u.rent,0))}</b></div>`).join('')}</div></section></div>`
-  }
-  function recentActivity(){const xs=[...invoices.filter(i=>i.status==='Paid').slice(0,2).map(i=>({date:i.issueDate,text:`${i.tenant} paid rent`,sub:`${i.building} · ${i.unit}`,amount:i.total,icon:'check'})),...expenses.slice(0,2).map(e=>({date:e.date,text:`${e.category} expense added`,sub:`${e.building} · ${e.description}`,amount:e.amount,icon:'coin'}))].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,4);return xs.map(x=>`<div class="activity"><span class="activity-mark">${icons[x.icon]}</span><div style="flex:1"><b>${esc(x.text)}</b><small>${esc(x.sub)} · ${fmtDate(x.date)}</small></div><b>${money(x.amount)}</b></div>`).join('')}
-  function rentPage(){
-    const filtered=units.filter(u=>{const q=rentQuery.toLowerCase();const find=!q||`${u.tenantNames.join(' ')} ${u.building} ${u.unit}`.toLowerCase().includes(q);const b=rentBuilding==='all'||u.buildingId===rentBuilding;const st=rentStatus==='all'||(rentStatus==='occupied'?!u.vacant:rentStatus==='vacant'?u.vacant:rentStatus==='overdue'?u.currentDue>0:rentStatus==='lease'?leaseAlerts().some(x=>x.id===u.id):false);return find&&b&&st});
-    const pages=Math.max(1,Math.ceil(filtered.length/20));rentPageIndex=Math.min(rentPageIndex,pages-1);const rows=filtered.slice(rentPageIndex*20,(rentPageIndex+1)*20);
-    const total=monthlyRent(),out=totalBalance(),actions=`<button class="btn" data-action="export-csv">Export CSV</button><button class="btn primary" data-action="new-invoice">${icons.plus} Create invoice</button>`;
-    const head=pageHead('Rent & leases','Track apartment rent, tenant details, and lease follow-ups.',actions);
-    const summary=`<div class="money-summary"><div class="money-card"><span>Monthly scheduled rent</span><strong>${money(total)}</strong></div><div class="money-card"><span>Open rent balance</span><strong class="negative">${money(out)}</strong></div><div class="money-card"><span>Lease expirations</span><strong>${leaseAlerts(60).length} <small style="font:500 11px var(--font);color:var(--muted)">within 60 days · ${leaseAlerts(7).length} this week</small></strong></div></div>`;
-    const views=`<div class="tabs" role="tablist"><button class="tab ${rentView==='roll'?'active':''}" data-action="rent-view" data-view="roll" role="tab" aria-selected="${rentView==='roll'}">Rent roll</button><button class="tab ${rentView==='leases'?'active':''}" data-action="rent-view" data-view="leases" role="tab" aria-selected="${rentView==='leases'}">Lease schedule <span class="nav-count">${leaseAlerts(60).length}</span></button></div>`;
-    if(rentView==='leases')return `${head}${summary}${views}<section class="panel lease-followups"><div class="panel-head lease-head"><div><div class="panel-title">Upcoming lease expirations</div><div class="panel-sub">Contact-by dates use each demo lease’s notice window.</div></div>${leaseWindowControls()}</div><div class="lease-summary"><strong>${leaseAlerts(leaseWindow).length} lease${leaseAlerts(leaseWindow).length===1?'':'s'}</strong> ending ${leaseWindow===7?'this week':'in the next 60 days'} · mark a tenant contacted to track follow-up</div>${leaseRows(leaseAlerts(leaseWindow))}</section>`;
-    return `${head}${summary}${views}
-    <div class="toolbar"><label class="searchbox">${icons.search}<input class="input" id="rent-search" value="${esc(rentQuery)}" placeholder="Search a tenant, building or unit…"></label><select class="select" id="building-filter" aria-label="Filter by building"><option value="all">All buildings</option>${buildings.map(b=>`<option value="${b.id}" ${rentBuilding===b.id?'selected':''}>${esc(b.name)}</option>`).join('')}</select><select class="select" id="rent-status" aria-label="Filter by status"><option value="all" ${rentStatus==='all'?'selected':''}>All unit status</option><option value="occupied" ${rentStatus==='occupied'?'selected':''}>Occupied</option><option value="vacant" ${rentStatus==='vacant'?'selected':''}>Vacant</option><option value="overdue" ${rentStatus==='overdue'?'selected':''}>Rent overdue</option><option value="lease" ${rentStatus==='lease'?'selected':''}>Lease ending soon</option></select><span class="results-note">${filtered.length} apartments · 150 tenants</span></div>
-    <section class="panel"><div class="table-wrap"><table class="table"><thead><tr><th>Unit &amp; tenant</th><th>Building</th><th>Lease ends</th><th>Monthly rent</th><th>Open balance</th><th>Status</th><th></th></tr></thead><tbody>${rows.length?rows.map(u=>`<tr><td><div class="primary-text">${esc(u.unit)}</div><div class="secondary-text">${u.vacant?'No current tenant':esc(u.tenantNames.join(' & '))}</div></td><td>${esc(u.building)}<div class="secondary-text">${esc(u.regulated)}</div></td><td>${u.vacant?'—':fmtDate(u.leaseEnd)}</td><td class="money">${money(u.rent)}</td><td class="money ${u.currentDue+u.arrears?'negative':''}">${u.currentDue+u.arrears?money(u.currentDue+u.arrears):'—'}</td><td>${u.vacant?statusPill('Vacant'):u.currentDue?statusPill('Overdue'):u.arrears?statusPill('Partial'):statusPill('Active')}</td><td><button class="mini-action" data-action="unit-detail" data-id="${u.id}">Details</button></td></tr>`).join(''):`<tr><td colspan="7"><div class="empty">No apartments match. Try another search or filter.</div></td></tr>`}</tbody></table></div><div class="pager"><span>Showing ${filtered.length?rentPageIndex*20+1:0}–${Math.min(filtered.length,(rentPageIndex+1)*20)} of ${filtered.length} apartments</span><div><button data-action="rent-prev" ${rentPageIndex===0?'disabled':''}>Previous</button> <button data-action="rent-next" ${rentPageIndex>=pages-1?'disabled':''}>Next</button></div></div></section>`
-  }
-  function invoiceTableRows(list){return list.map(i=>`<tr><td><button class="mini-action" data-action="view-invoice" data-id="${i.id}">#${esc(i.number)}</button><div class="secondary-text">${esc(i.description)}</div></td><td><div class="primary-text">${esc(i.tenant)}</div><div class="secondary-text">${esc(i.building)} · ${esc(i.unit)}</div></td><td>${fmtDate(i.issueDate)}<div class="secondary-text">Due ${fmtDate(i.dueDate)}</div></td><td class="money">${money(i.total)}</td><td class="money ${i.balance?'negative':''}">${money(i.balance)}</td><td>${statusPill(i.status)}</td><td><div class="row-actions">${i.balance?`<button class="mini-action" data-action="remind" data-id="${i.id}">Remind</button><button class="mini-action" data-action="payment" data-id="${i.id}">Payment</button>`:''}</div></td></tr>`).join('')}
-  function moneyPage(){const acts=`<button class="btn" data-action="new-expense">${icons.plus} Add expense</button><button class="btn primary" data-action="new-invoice">${icons.plus} Create invoice</button>`;const totalOpen=openInvoices().reduce((a,i)=>a+i.balance,0),monthPaid=invoices.filter(i=>i.period==='2026-09'&&i.balance===0).reduce((a,i)=>a+i.paid,0);
-    const head=pageHead('Money','Create rent invoices, record payments, and log property expenses.',acts);
-    const tabs=`<div class="tabs" role="tablist"><button class="tab ${moneyTab==='invoices'?'active':''}" data-action="money-tab" data-tab="invoices" role="tab" aria-selected="${moneyTab==='invoices'}">Invoices</button><button class="tab ${moneyTab==='expenses'?'active':''}" data-action="money-tab" data-tab="expenses" role="tab" aria-selected="${moneyTab==='expenses'}">Expenses</button></div>`;
-    if(moneyTab==='invoices'){
-      const filtered=invoices.filter(i=>{const q=invoiceQuery.toLowerCase();const search=!q||`${i.number} ${i.tenant} ${i.building} ${i.unit}`.toLowerCase().includes(q);const s=moneyFilter==='all'||(moneyFilter==='open'?i.balance>0:moneyFilter==='overdue'?i.balance>0&&i.status==='Overdue':i.balance===0);return search&&s}).sort((a,b)=>b.issueDate.localeCompare(a.issueDate)||Number(b.number)-Number(a.number));
-      return `${head}<div class="money-summary"><div class="money-card"><span>Open invoice balance</span><strong class="negative">${money(totalOpen)}</strong></div><div class="money-card"><span>Open invoices</span><strong>${openInvoices().length}</strong></div><div class="money-card"><span>Collected this month</span><strong>${money(monthPaid)}</strong></div></div>${tabs}<div class="toolbar"><label class="searchbox">${icons.search}<input class="input" id="invoice-search" value="${esc(invoiceQuery)}" placeholder="Find by tenant, unit or invoice #…"></label><select class="select" id="invoice-filter" aria-label="Filter invoices"><option value="all">All invoices</option><option value="open" ${moneyFilter==='open'?'selected':''}>Open balance</option><option value="overdue" ${moneyFilter==='overdue'?'selected':''}>Overdue</option><option value="paid" ${moneyFilter==='paid'?'selected':''}>Paid</option></select><span class="results-note">${filtered.length} invoices</span></div><section class="panel"><div class="table-wrap"><table class="table"><thead><tr><th>Invoice</th><th>Billed to</th><th>Issued</th><th>Total</th><th>Balance due</th><th>Status</th><th>Actions</th></tr></thead><tbody>${filtered.length?invoiceTableRows(filtered):'<tr><td colspan="7"><div class="empty">No invoices match this filter.</div></td></tr>'}</tbody></table></div></section>`
+      var billed=invoices.reduce(function(a,x){return a+x.lines.reduce(function(b,l){return b+cents(l.qty*l.rate)},0)},0);
+      var paid=invoices.reduce(function(a,x){return a+x.paid},0);
+      out.push({id:kind[0]+'-c'+i,name:name,kind:kind,
+        email:name.toLowerCase().replace(/[^a-z]/g,'.')+'@example.invalid',
+        phone:'('+ (200+Math.floor(seeded(i*23)*700)) +') '+ (100+Math.floor(seeded(i*29)*800)) +'-'+(1000+Math.floor(seeded(i*31)*8999)),
+        address:(100+Math.floor(seeded(i*41)*900))+' '+pick(['Ocean Pkwy','Ave C','Broadway','Eastern Pkwy','Flatbush Ave','Ocean Ave','Bedford Ave','Coney Island Ave'],i*13)+', Brooklyn, NY',
+        building:kind==='rental'?BUILDINGS[Math.floor(seeded(i*19)*BUILDINGS.length)]:(1+Math.floor(seeded(i*23)*40))+' '+(pick(BUILDINGS,i*29)),
+        unit:kind==='rental'?String.fromCharCode(65+(i%6))+String(1+(i%25)).padStart(2,'0'):'',
+        job:kind==='construction'?JOBS[Math.floor(seeded(i*31)*JOBS.length)]:'',
+        invoices:invoices,billed:billed,paid:paid,open:billed-paid});
     }
-    const filtered=expenses.filter(e=>!expenseQuery||`${e.building} ${e.unit} ${e.category} ${e.description} ${e.vendor}`.toLowerCase().includes(expenseQuery.toLowerCase())).sort((a,b)=>b.date.localeCompare(a.date));const expenseTotal=expenses.reduce((s,e)=>s+Number(e.amount),0),currentExpenses=expenses.filter(e=>e.date.startsWith('2026-09')).reduce((s,e)=>s+Number(e.amount),0);
-    return `${head}<div class="money-summary"><div class="money-card"><span>September expenses</span><strong>${money(currentExpenses)}</strong></div><div class="money-card"><span>All logged expenses</span><strong>${money(expenseTotal)}</strong></div><div class="money-card"><span>Expense records</span><strong>${expenses.length}</strong></div></div>${tabs}<div class="toolbar"><label class="searchbox">${icons.search}<input class="input" id="expense-search" value="${esc(expenseQuery)}" placeholder="Search vendor, property or expense…"></label><span class="results-note">${filtered.length} expenses</span></div><section class="panel"><div class="table-wrap"><table class="table"><thead><tr><th>Date</th><th>Property &amp; unit</th><th>Expense</th><th>Vendor</th><th>Category</th><th>Amount</th></tr></thead><tbody>${filtered.length?filtered.map(e=>`<tr><td>${fmtDate(e.date)}</td><td><div class="primary-text">${esc(e.building)}</div><div class="secondary-text">Unit ${esc(e.unit)}</div></td><td class="primary-text">${esc(e.description)}</td><td>${esc(e.vendor)}</td><td><span class="status active">${esc(e.category)}</span></td><td class="money">${money(e.amount)}</td></tr>`).join(''):'<tr><td colspan="6"><div class="empty">No expenses match your search.</div></td></tr>'}</tbody></table></div></section>`
+    return out;
   }
-  function render(){const titles={dashboard:'Dashboard',rent:'Rent & leases',money:'Money'};setText('#crumb-page',titles[page]);document.querySelectorAll('.nav-btn,.mobile-nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));$('#lease-nav-count').textContent=leaseAlerts().length;$('#money-nav-count').textContent=openInvoices().length;setText('#side-rent',money(monthlyRent()));app.innerHTML=page==='dashboard'?dashboard():page==='rent'?rentPage():moneyPage()}
-  function toast(text,detail=''){const t=$('#toast');t.innerHTML=`${esc(text)}${detail?` <em>${esc(detail)}</em>`:''}`;t.classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.classList.remove('show'),3400)}
-  function showDialog(title,subtitle,body,foot='',wide=false){setText('#dialog-title',title);setText('#dialog-subtitle',subtitle);$('#dialog-body').innerHTML=body;$('#dialog-foot').innerHTML=foot;dialog.classList.toggle('wide',wide);overlay.classList.add('show');$('#dialog-close').focus()}
-  function closeDialog(){overlay.classList.remove('show')}
-  function buildingOptions(selected=''){return buildings.map(b=>`<option value="${b.id}" ${selected===b.id?'selected':''}>${esc(b.name)}</option>`).join('')}
-  function unitOptions(selected=''){return occupied().map(u=>`<option value="${u.id}" ${selected===u.id?'selected':''}>${esc(u.tenantNames.join(' & '))} · ${esc(u.building)} ${esc(u.unit)}</option>`).join('')}
-  function newInvoiceForm(){const unit=occupied()[0];const body=`<form id="invoice-form"><div class="field-grid"><div class="field full"><label for="invoice-unit">Tenant and apartment</label><select id="invoice-unit" name="unitId">${unitOptions(unit.id)}</select></div><div class="field"><label for="invoice-kind">Invoice amount</label><select id="invoice-kind" name="kind"><option value="current">September rent only</option><option value="balance">Total open rent balance</option><option value="custom">Custom amount</option></select></div><div class="field"><label for="invoice-due">Due date</label><input type="date" id="invoice-due" name="dueDate" value="2026-10-01"></div><div class="field full" id="custom-wrap" style="display:none"><label for="custom-amount">Custom amount</label><input type="number" min="0.01" step="0.01" id="custom-amount" name="customAmount" placeholder="0.00"></div><div class="field full"><label for="invoice-note">Invoice description</label><input id="invoice-note" name="description" value="Rent for September 2026"></div></div><div class="amount-preview"><span>Amount to invoice<br><small id="invoice-explainer">September rent amount</small></span><strong id="invoice-amount">${money(unit.rent)}</strong></div><div class="form-note">Creates a printable invoice in this demo. Sending email and collecting payment are not connected.</div></form>`;
-    const foot=`<button class="btn" type="button" data-action="close-dialog">Cancel</button><button class="btn primary" type="submit" form="invoice-form">Create invoice</button>`;showDialog('Create an invoice','Choose a tenant and what you’re billing for.',body,foot);
-    const update=()=>{const u=units.find(x=>x.id===$('#invoice-unit').value),kind=$('#invoice-kind').value;$('#custom-wrap').style.display=kind==='custom'?'grid':'none';const amount=kind==='current'?u.rent:kind==='balance'?u.currentDue+u.arrears:($('#custom-amount').value||0);setText('#invoice-amount',money(amount));setText('#invoice-explainer',kind==='current'?'September rent amount':kind==='balance'?'Current month plus earlier unpaid rent':'Amount entered below')};$('#invoice-unit').addEventListener('change',update);$('#invoice-kind').addEventListener('change',update);$('#custom-amount').addEventListener('input',update);
+  var RENTAL=makeClients('rental',161,4001);
+  var CONSTRUCTION=makeClients('construction',55,9001);
+  RENTAL.forEach(function(c){c.invoices.forEach(function(i){i.clientId=c.id})});
+  CONSTRUCTION.forEach(function(c){c.invoices.forEach(function(i){i.clientId=c.id})});
+  var DATA={rental:RENTAL,construction:CONSTRUCTION};
+
+  var NAV={
+    rental:[['dashboard','Dashboard','M4 19V9l8-5 8 5v10'],['clients','Clients','M12 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8M4 21c0-4 4-6 8-6s8 2 8 6'],['invoices','Invoices','M6 2h9l4 4v16H6z']],
+    construction:[['dashboard','Dashboard','M4 19V9l8-5 8 5v10'],['clients','Clients','M12 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8M4 21c0-4 4-6 8-6s8 2 8 6'],['invoices','Invoices','M6 2h9l4 4v16H6z']]
+  };
+  var state={profile:'rental',page:'dashboard',clientId:null,query:'',pageIndex:0,invQuery:'',invPage:0};
+  var $=function(s){return document.querySelector(s)};
+  var app=$('#app'),overlay=$('#overlay'),dialog=$('#dialog');
+  function clients(){return DATA[state.profile]}
+  function label(){return state.profile==='rental'?'Rental desk':'Construction desk'}
+  function icons(vb,k){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="'+(NAV[state.profile].find(function(x){return x[0]===k})||[0,0,'M4 12h16'])[2]+'"/></svg>'}
+
+  function persist(){}
+  function toast(msg){var t=$('#toast');t.innerHTML=msg;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(function(){t.classList.remove('show')},2600)}
+
+  function renderNav(){
+    var n=NAV[state.profile];
+    $('#nav').innerHTML=n.map(function(x){return '<button class="nav-btn '+(state.page===x[0]?'active':'')+'" data-action="nav" data-page="'+x[0]+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="'+x[2]+'"/></svg>'+x[1]+'</button>'}).join('');
+    $('#nav-label').textContent=state.profile==='rental'?'Rental':'Construction';
+    $('#side-profile').textContent=label();
+    $('#crumb-profile').textContent=label();
+    $('#side-avatar').textContent=state.profile==='rental'?'MH':'MH';
   }
-  function submitInvoice(form){const fd=new FormData(form),u=units.find(x=>x.id===fd.get('unitId')),kind=fd.get('kind'),amount=kind==='current'?u.rent:kind==='balance'?u.currentDue+u.arrears:Number(fd.get('customAmount'));if(!amount||amount<=0){toast('No open rent balance for this apartment. Choose September rent or enter a custom amount.');return}const num=String(Math.max(4336,...invoices.map(i=>Number(i.number)||0))+1),due=fd.get('dueDate')||'2026-10-01',id=`i${num}`;const i={id,number:num,unitId:u.id,tenant:u.tenantNames.join(' & '),building:u.building,unit:u.unit,period:'2026-09',description:fd.get('description')||'Rent charge',issueDate:'2026-09-28',dueDate:due,total:amount,paid:0,balance:amount,status:due<'2026-09-28'?'Overdue':'Due',kind:'custom',scope:kind==='balance'?'balance':kind==='current'?'current':'custom'};invoices.unshift(i);persist();closeDialog();page='money';moneyTab='invoices';render();toast('Invoice created',`#${num} · ${money(amount)}`)}
-  function openInvoice(inv){
-    if(!inv)return;
-    const remaining=Math.max(0,inv.balance),paid=inv.total-remaining;
-    const body=`<div class="invoice-paper"><div class="invoice-top"><div class="invoice-brand">Moon Developements Inc.<small>Managed by Morshed Hossain</small></div><div class="invoice-title"><h3>INVOICE</h3><div>Invoice #${esc(inv.number)}</div></div></div><div class="invoice-billing"><div><div class="invoice-caption">Billed to</div><div class="invoice-person">${esc(inv.tenant)}</div><div class="invoice-address">${esc(inv.building)} · Apartment ${esc(inv.unit)}</div></div><div class="invoice-details"><span>Date of issue</span><span>${fmtDate(inv.issueDate)}</span><span>Due date</span><span>${fmtDate(inv.dueDate)}</span><span>Property</span><span>${esc(inv.building)}</span><span>Apartment</span><span>${esc(inv.unit)}</span></div></div><table class="invoice-lines"><thead><tr><th>Description</th><th>Rate</th><th>Qty</th><th>Line total</th></tr></thead><tbody><tr><td>${esc(inv.description)}</td><td>${money(inv.total)}</td><td>1</td><td>${money(inv.total)}</td></tr></tbody></table><div class="invoice-total"><div class="terms"><b>Terms</b><br>Please submit rent by the due date shown above. For questions about this statement, contact the property manager.<br><br>Thank you.</div><div class="totals"><div class="total-line"><span>Subtotal</span><strong>${money(inv.total)}</strong></div><div class="total-line"><span>Tax</span><strong>${money(0)}</strong></div><div class="total-line"><span>Amount paid</span><strong>${money(paid)}</strong></div><div class="total-line due"><span>Amount due</span><strong>${money(remaining)}</strong></div></div></div></div><div class="demo-disclaimer">Sample invoice · Demo data · No payment request has been sent</div>`;
-    const foot=`<button class="btn" data-action="close-dialog">Close</button><span style="display:flex;gap:8px">${remaining?`<button class="btn soft" data-action="remind" data-id="${inv.id}">Mark reminder sent</button><button class="btn" data-action="payment" data-id="${inv.id}">Record payment</button>`:''}<button class="btn primary" data-action="print-invoice" data-id="${inv.id}">Print / save PDF</button></span>`;showDialog('Invoice preview',`Invoice #${inv.number} · ${statusPill(inv.status)}`,body,foot,true)}
-  function paymentForm(inv){const body=`<form id="payment-form"><div class="field-grid"><div class="field full"><label>Invoice</label><div class="input" style="background:#f8faf7">#${esc(inv.number)} · ${esc(inv.tenant)} · ${esc(inv.building)} ${esc(inv.unit)}</div></div><div class="field"><label for="payment-amount">Payment amount</label><input id="payment-amount" name="amount" type="number" min="0.01" max="${inv.balance}" step="0.01" value="${Number(inv.balance).toFixed(2)}" required></div><div class="field"><label for="payment-date">Received on</label><input id="payment-date" name="date" type="date" value="2026-09-28" required></div><div class="field full"><label for="payment-method">Payment method</label><select id="payment-method" name="method"><option>Bank transfer</option><option>Check</option><option>Cash</option><option>Other</option></select></div></div><div class="form-note">This updates the demo ledger only. No bank or payment processor is connected.</div></form>`;const foot=`<button class="btn" data-action="close-dialog">Cancel</button><button class="btn primary" type="submit" form="payment-form">Save payment</button>`;showDialog('Record a payment',`Balance due: ${money(inv.balance)}`,body,foot);$('#payment-form').dataset.invoiceId=inv.id}
-  function submitPayment(form){const inv=invoices.find(x=>x.id===form.dataset.invoiceId),fd=new FormData(form),amt=Number(fd.get('amount'));if(!inv||!amt||amt<=0||amt>inv.balance){toast('Enter an amount up to the balance due.');return}inv.balance=Math.round((inv.balance-amt)*100)/100;inv.paid=Math.round((inv.paid+amt)*100)/100;inv.status=inv.balance===0?'Paid':'Partial';const u=units.find(x=>x.id===inv.unitId);if(u){if(inv.scope==='current'){const take=Math.min(u.currentDue,amt);u.currentDue=Math.max(0,Math.round((u.currentDue-take)*100)/100)}else if(inv.scope==='arrears')u.arrears=Math.max(0,Math.round((u.arrears-amt)*100)/100);else if(inv.scope==='balance'){const take=Math.min(u.currentDue,amt);u.currentDue=Math.max(0,u.currentDue-take);u.arrears=Math.max(0,Math.round((u.arrears-(amt-take))*100)/100)}}persist();closeDialog();render();toast('Payment recorded',`${money(amt)} · ${fd.get('method')}`)}
-  function expenseForm(){const body=`<form id="expense-form"><div class="field-grid"><div class="field"><label for="expense-building">Building</label><select id="expense-building" name="buildingId">${buildingOptions('moon')}</select></div><div class="field"><label for="expense-unit">Apartment (optional)</label><select id="expense-unit" name="unit"><option value="">Common area / whole building</option></select></div><div class="field"><label for="expense-category">Category</label><select id="expense-category" name="category"><option>Repair</option><option>Appliance</option><option>Maintenance</option><option>Supplies</option><option>Painting</option><option>Utilities</option><option>Other</option></select></div><div class="field"><label for="expense-date">Date</label><input type="date" id="expense-date" name="date" value="2026-09-28"></div><div class="field full"><label for="expense-description">What was purchased or repaired?</label><input id="expense-description" name="description" placeholder="e.g. Replaced kitchen faucet" required></div><div class="field"><label for="expense-vendor">Vendor or payee</label><input id="expense-vendor" name="vendor" placeholder="Business or person" required></div><div class="field"><label for="expense-amount">Amount</label><input id="expense-amount" name="amount" type="number" min="0.01" step="0.01" placeholder="0.00" required></div></div><div class="form-note">Expense tracking only; this demo does not connect to a bank or accounting service.</div></form>`;const foot=`<button class="btn" data-action="close-dialog">Cancel</button><button class="btn primary" type="submit" form="expense-form">Save expense</button>`;showDialog('Add a property expense','Keep repair and purchase costs attached to a building or apartment.',body,foot);const sel=$('#expense-building');const update=()=>{const b=buildings.find(x=>x.id===sel.value);$('#expense-unit').innerHTML=`<option value="">Common area / whole building</option>${units.filter(u=>u.buildingId===b.id).map(u=>`<option value="${u.unit}">${u.unit}${u.tenantNames.length?` · ${esc(u.tenantNames[0])}`:' · vacant'}</option>`).join('')}`};sel.addEventListener('change',update);update()}
-  function submitExpense(form){const fd=new FormData(form),b=buildings.find(x=>x.id===fd.get('buildingId')),amount=Number(fd.get('amount'));if(!amount||amount<=0){toast('Enter an expense amount to continue.');return}expenses.unshift({id:`e${Date.now()}`,date:fd.get('date'),building:b.name,unit:fd.get('unit')||'Common',category:fd.get('category'),description:fd.get('description'),vendor:fd.get('vendor'),amount});persist();closeDialog();page='money';moneyTab='expenses';render();toast('Expense saved',`${money(amount)} · ${b.name}`)}
-  function unitDetails(u){const body=`<div class="money-summary"><div class="money-card"><span>Monthly rent</span><strong>${money(u.rent)}</strong></div><div class="money-card"><span>Open balance</span><strong class="${u.currentDue+u.arrears?'negative':''}">${money(u.currentDue+u.arrears)}</strong></div><div class="money-card"><span>Lease ends</span><strong style="font-size:14px">${fmtDate(u.leaseEnd)}</strong></div></div><div class="field-grid"><div class="field"><label>Property</label><div class="input">${esc(u.building)}</div></div><div class="field"><label>Apartment</label><div class="input">${esc(u.unit)}</div></div><div class="field full"><label>Tenant${u.tenantNames.length>1?'s':''}</label><div class="input">${u.vacant?'No current tenant':esc(u.tenantNames.join(' & '))}</div></div><div class="field"><label>Rent status</label><div style="padding-top:7px">${u.vacant?statusPill('Vacant'):u.currentDue?statusPill('Overdue'):u.arrears?statusPill('Partial'):statusPill('Active')}</div></div><div class="field"><label>Unit type</label><div class="input">${esc(u.regulated)}</div></div></div>`;const foot=`<button class="btn" data-action="close-dialog">Close</button><span style="display:flex;gap:8px">${!u.vacant&&u.currentDue+u.arrears?`<button class="btn" data-action="remind-unit" data-id="${u.id}">Remind tenant</button>`:''}<button class="btn primary" data-action="invoice-unit" data-id="${u.id}">Create invoice</button></span>`;showDialog(`Apartment ${u.unit}`,`${u.building} · unit record`,body,foot)}
-  function exportCSV(){const rows=[['Building','Unit','Tenant','Lease end','Monthly rent','Open balance','Status'],...units.map(u=>[u.building,u.unit,u.tenantNames.join(' & '),u.leaseEnd,u.rent,u.currentDue+u.arrears,u.vacant?'Vacant':u.currentDue?'Overdue':u.arrears?'Past balance':'Current'])];const csv=rows.map(r=>r.map(x=>`"${String(x).replace(/"/g,'""')}"`).join(',')).join('\r\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='moon-developements-rent-roll-demo.csv';a.click();URL.revokeObjectURL(a.href);toast('Rent roll exported','moon-developements-rent-roll-demo.csv')}
-  function doReminder(id){const i=invoices.find(x=>x.id===id);const u=units.find(x=>x.id===id);toast('Reminder marked as sent',`${i?`Invoice #${i.number}`:u?u.unit:'Demo'} · no email was sent`)}
-  function go(next){page=next;if(next==='money')moneyTab='invoices';$('#sidebar').classList.remove('open');render();window.scrollTo({top:0,behavior:'smooth'})}
-  document.addEventListener('click',e=>{const nav=e.target.closest('[data-page]');if(nav){go(nav.dataset.page);return}const b=e.target.closest('[data-action]');if(!b)return;const action=b.dataset.action,id=b.dataset.id;
-    if(action==='new-invoice')newInvoiceForm();else if(action==='new-expense')expenseForm();else if(action==='close-dialog')closeDialog();else if(action==='go-rent')go('rent');else if(action==='go-leases'){rentView='leases';leaseWindow=60;go('rent')}else if(action==='go-money')go('money');else if(action==='lease-window'){leaseWindow=Number(b.dataset.days);render()}else if(action==='rent-view'){rentView=b.dataset.view;render()}else if(action==='mark-contacted'){leaseContacts[id]={date:'2026-09-28'};persist();render();toast('Lease follow-up marked as contacted','No message was sent in this demo')}else if(action==='export-csv')exportCSV();else if(action==='remind')doReminder(id);else if(action==='remind-unit')doReminder(id);else if(action==='payment'){const inv=invoices.find(x=>x.id===id);if(inv)paymentForm(inv);else{const u=units.find(x=>x.id===id),i=openInvoices().find(x=>x.unitId===u?.id);if(i)paymentForm(i);else toast('No open invoice found for this apartment.')}}else if(action==='view-invoice')openInvoice(invoices.find(x=>x.id===id));else if(action==='print-invoice'){window.print()}else if(action==='money-tab'){moneyTab=b.dataset.tab;render()}else if(action==='rent-next'){rentPageIndex++;render()}else if(action==='rent-prev'){rentPageIndex=Math.max(0,rentPageIndex-1);render()}else if(action==='unit-detail')unitDetails(units.find(x=>x.id===id));else if(action==='invoice-unit'){const u=units.find(x=>x.id===id);closeDialog();newInvoiceForm();$('#invoice-unit').value=u.id;$('#invoice-unit').dispatchEvent(new Event('change'))}
+  function pageHead(title,sub,actions){
+    return '<div class="page-head"><div><div class="eyebrow">'+label()+' · '+fmtDate(TODAY)+'</div><h1>'+title+'</h1><p>'+sub+'</p></div><div class="head-actions">'+(actions||'')+'</div></div>';
+  }
+  function stat(l,v,f,c){return '<article class="stat"><div class="stat-top"><span class="stat-label">'+l+'</span></div><div class="stat-value">'+v+'</div><div class="stat-foot">'+f+'</div></article>'}
+
+  function dashboard(){
+    var cs=clients(),billed=cs.reduce(function(a,c){return a+c.billed},0),paid=cs.reduce(function(a,c){return a+c.paid},0),open=billed-paid;
+    var invCount=cs.reduce(function(a,c){return a+c.invoices.length},0);
+    return pageHead('Good morning, Morshed','Here is what needs your attention across the '+label().toLowerCase()+'.','<button class="btn primary" data-action="nav" data-page="clients">Open clients</button>')
+      +'<section class="stats">'+stat('Clients',cs.length,'Active '+(state.profile==='rental'?'tenants':'construction clients'),'')
+      +stat('Invoices',invCount,state.profile==='rental'?'Issued and drafts':'Issued and drafts','')
+      +stat('Billed',money(billed/100),'All time','')
+      +stat('Open balance',money(open/100),'Across '+cs.filter(function(c){return c.open>0}).length+' clients','')
+      +'</section>'
+      +'<section class="panel"><div class="panel-head"><div><div class="panel-title">Clients with an open balance</div><div class="panel-sub">Click a name to open the full client profile</div></div><button class="btn ghost small" data-action="nav" data-page="clients">View all</button></div>'
+      +'<div class="table-wrap"><table class="table"><thead><tr><th>Client</th><th>Invoices</th><th>Billed</th><th>Paid</th><th>Open</th></tr></thead><tbody>'
+      +cs.slice().sort(function(a,b){return b.open-a.open}).slice(0,8).map(function(c){return '<tr><td><button class="mini-action" data-action="client" data-id="'+c.id+'">'+esc(c.name)+'</button><div class="secondary-text">'+esc(state.profile==='rental'?c.building+' · '+c.unit:c.job)+'</div></td><td>'+c.invoices.length+'</td><td class="money">'+money(c.billed/100)+'</td><td class="money">'+money(c.paid/100)+'</td><td class="money negative">'+money(c.open/100)+'</td></tr>'}).join('')
+      +'</tbody></table></div></section>';
+  }
+  function filteredClients(){var q=state.query.toLowerCase();return clients().filter(function(c){return !q||(c.name+' '+c.building+' '+c.unit+' '+c.job+' '+c.email).toLowerCase().indexOf(q)>=0})}
+  function clientsPage(){
+    var list=filteredClients(),pages=Math.max(1,Math.ceil(list.length/PAGE_SIZE));
+    state.pageIndex=Math.min(state.pageIndex,pages-1);
+    var rows=list.slice(state.pageIndex*PAGE_SIZE,(state.pageIndex+1)*PAGE_SIZE);
+    return pageHead('Clients','Search '+clients().length+' '+label().toLowerCase()+' clients. Click a name to open the profile.','<button class="btn" data-action="export">Export CSV</button>')
+      +'<div class="toolbar"><label class="searchbox input"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#82908a" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m16 16 4 4"/></svg><input class="input" id="client-search" type="search" value="'+esc(state.query)+'" placeholder="Client name, building, unit, or email"></label><span class="results-note">'+list.length+' of '+clients().length+' clients</span></div>'
+      +'<section class="panel"><div class="table-wrap"><table class="table"><thead><tr><th>Client</th><th>'+(state.profile==='rental'?'Property':'Job')+'</th><th>Invoices</th><th>Billed</th><th>Paid</th><th>Open</th><th></th></tr></thead><tbody>'
+      +(rows.length?rows.map(function(c){return '<tr><td><div class="primary-text"><button class="mini-action" data-action="client" data-id="'+c.id+'">'+esc(c.name)+'</button></div><div class="secondary-text">'+esc(c.email)+'</div></td><td>'+esc(state.profile==='rental'?c.building+' · Unit '+c.unit:c.job)+'<div class="secondary-text">'+esc(state.profile==='rental'?c.address:c.building)+'</div></td><td>'+c.invoices.length+'</td><td class="money">'+money(c.billed/100)+'</td><td class="money">'+money(c.paid/100)+'</td><td class="money '+(c.open?'negative':'')+'">'+money(c.open/100)+'</td><td><button class="mini-action" data-action="client" data-id="'+c.id+'">Open ↗</button></td></tr>'}).join(''):'<tr><td colspan="7"><div class="empty">No clients match &ldquo;'+esc(state.query)+'&rdquo;.</div></td></tr>')
+      +'</tbody></table></div>'
+      +'<div class="pager"><span>Showing '+(list.length?state.pageIndex*PAGE_SIZE+1:0)+'–'+Math.min(list.length,(state.pageIndex+1)*PAGE_SIZE)+' of '+list.length+' clients</span><div>Page '+(state.pageIndex+1)+' of '+pages+' &nbsp; <button data-action="prev" '+(state.pageIndex===0?'disabled':'')+'>Previous</button> <button data-action="next" '+(state.pageIndex>=pages-1?'disabled':'')+'>Next</button></div></div></section>';
+  }
+  function clientProfile(){
+    var c=clients().find(function(x){return x.id===state.clientId});
+    if(!c)return '<div class="empty">Client not found.</div>';
+    return pageHead(esc(c.name),esc(c.address),'<button class="btn ghost small" data-action="nav" data-page="clients">← All clients</button><button class="btn primary" data-action="new-invoice" data-id="'+c.id+'">New invoice</button>')
+      +'<section class="stats">'+stat('Billed',money(c.billed/100),'All invoices','')+stat('Paid',money(c.paid/100),'Received','')+stat('Open balance',money(c.open/100),c.open>0?'Needs follow-up':'Up to date','')+stat('Invoices',String(c.invoices.length),'Issued + drafts','')+'</section>'
+      +'<div class="grid-main"><section class="panel"><div class="panel-head"><div><div class="panel-title">Client details</div><div class="panel-sub">Contact and property on file</div></div></div><div style="padding:0 18px 18px"><table class="table"><tbody>'
+      +'<tr><td class="secondary-text">Name</td><td class="primary-text">'+esc(c.name)+'</td></tr>'
+      +'<tr><td class="secondary-text">'+(state.profile==='rental'?'Building':'Project site')+'</td><td>'+esc(c.building)+'</td></tr>'
+      +(state.profile==='rental'?'<tr><td class="secondary-text">Unit</td><td>'+esc(c.unit)+'</td></tr>':'<tr><td class="secondary-text">Job</td><td>'+esc(c.job)+'</td></tr>')
+      +'<tr><td class="secondary-text">Address</td><td>'+esc(c.address)+'</td></tr>'
+      +'<tr><td class="secondary-text">Email</td><td>'+esc(c.email)+'</td></tr>'
+      +'<tr><td class="secondary-text">Phone</td><td>'+esc(c.phone)+'</td></tr>'
+      +'</tbody></table></div></section>'
+      +'<section class="panel"><div class="panel-head"><div><div class="panel-title">Invoice history</div><div class="panel-sub">'+c.invoices.length+' invoices · click one to edit</div></div></div><div class="table-wrap"><table class="table"><thead><tr><th>Invoice</th><th>Date</th><th>Total</th><th>Balance</th><th>Status</th></tr></thead><tbody>'
+      +c.invoices.slice(0,12).map(function(i){return '<tr><td><button class="mini-action" data-action="invoice" data-id="'+i.id+'">#'+esc(i.number)+'</button></td><td>'+fmtDate(i.issueDate)+'</td><td class="money">'+money(i.lines.reduce(function(a,l){return a+cents(l.qty*l.rate)},0)/100)+'</td><td class="money '+(i.balance?'negative':'')+'">'+money(i.balance/100)+'</td><td>'+statusPill(i.status)+'</td></tr>'}).join('')
+      +'</tbody></table></div></section></div>';
+  }
+  function invoicesPage(){
+    var all=[];clients().forEach(function(c){c.invoices.forEach(function(i){all.push(i)})});
+    var q=state.invQuery.toLowerCase();
+    var list=all.filter(function(i){return !q||(i.number+' '+i.client).toLowerCase().indexOf(q)>=0});
+    list.sort(function(a,b){return b.issueDate.localeCompare(a.issueDate)});
+    var pages=Math.max(1,Math.ceil(list.length/PAGE_SIZE));state.invPage=Math.min(state.invPage,pages-1);
+    var rows=list.slice(state.invPage*PAGE_SIZE,(state.invPage+1)*PAGE_SIZE);
+    return pageHead('Invoices','Saved '+label().toLowerCase()+' invoices. Click an invoice to open the editor and type on it.','<button class="btn primary" data-action="new-invoice">Create invoice</button>')
+      +'<div class="toolbar"><label class="searchbox input"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#82908a" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m16 16 4 4"/></svg><input class="input" id="inv-search" type="search" value="'+esc(state.invQuery)+'" placeholder="Invoice number or client"></label><span class="results-note">'+list.length+' of '+all.length+' invoices</span></div>'
+      +'<section class="panel"><div class="table-wrap"><table class="table" style="white-space:normal"><thead><tr><th>Invoice</th><th>Client</th><th>Issued</th><th>Total</th><th>Balance</th><th>Status</th><th></th></tr></thead><tbody>'
+      +(rows.length?rows.map(function(i){return '<tr><td><div class="primary-text">#'+esc(i.number)+'</div><div class="secondary-text">'+esc(i.lines[0].description)+'</div></td><td>'+esc(i.client)+'</td><td>'+fmtDate(i.issueDate)+'</td><td class="money">'+money(i.lines.reduce(function(a,l){return a+cents(l.qty*l.rate)},0)/100)+'</td><td class="money '+(i.balance?'negative':'')+'">'+money(i.balance/100)+'</td><td>'+statusPill(i.status)+'</td><td><button class="mini-action" data-action="invoice" data-id="'+i.id+'">Open editor ↗</button></td></tr>'}).join(''):'<tr><td colspan="7"><div class="empty">No invoices match.</div></td></tr>')
+      +'</tbody></table></div><div class="pager"><span>Showing '+(list.length?state.invPage*PAGE_SIZE+1:0)+'–'+Math.min(list.length,(state.invPage+1)*PAGE_SIZE)+' of '+list.length+' invoices</span><div>Page '+(state.invPage+1)+' of '+pages+' &nbsp; <button data-action="inv-prev" '+(state.invPage===0?'disabled':'')+'>Previous</button> <button data-action="inv-next" '+(state.invPage>=pages-1?'disabled':'')+'>Next</button></div></div></section>';
+  }
+
+  function findInvoice(id){var f=null;clients().forEach(function(c){c.invoices.forEach(function(i){if(i.id===id)f=i})});return f}
+  function editorTotals(){return {sub:0,tax:0,total:0}}
+  function openEditor(inv){
+    var body='<div class="dialog-head" style="display:none"></div>';
+    var rowsHtml=inv.lines.map(function(l,idx){return '<tr data-line="'+idx+'"><td><input class="input" data-field="description" data-idx="'+idx+'" value="'+esc(l.description)+'"></td><td style="width:70px"><input class="input" data-field="qty" data-idx="'+idx+'" type="number" min="0" step="1" value="'+l.qty+'"></td><td style="width:110px"><input class="input" data-field="rate" data-idx="'+idx+'" type="number" min="0" step="0.01" value="'+l.rate+'"></td><td class="money" data-line-total="'+idx+'">'+money(cents(l.qty*l.rate)/100)+'</td><td><button class="mini-action" data-action="remove-line" data-idx="'+idx+'">×</button></td></tr>'}).join('');
+    $('#dialog').classList.add('wide');
+    $('#dialog-title').textContent='Invoice #'+inv.number;
+    $('#dialog-subtitle').textContent=inv.client+' · '+fmtDate(inv.issueDate)+' · Demo — nothing is issued or sent';
+    $('#dialog-body').innerHTML='<div class="invoice-paper"><div class="invoice-top"><div><div class="invoice-brand">Moon Developements<small>'+(state.profile==='rental'?'Rental desk':'Construction desk')+'</small></div></div><div class="invoice-title"><h3>INVOICE</h3><div>#'+esc(inv.number)+'</div></div></div>'
+      +'<div class="toolbar" style="margin:14px 0 0">Type on any field — totals update as you go.</div>'
+      +'<table class="invoice-lines" id="editor-lines"><thead><tr><th>Description</th><th>Qty</th><th>Rate</th><th style="text-align:right">Amount</th><th></th></tr></thead><tbody>'+rowsHtml+'</tbody></table>'
+      +'<button class="btn small" data-action="add-line">+ Add line</button>'
+      +'<div class="invoice-total" style="margin-top:16px"><div class="terms">This is a demo invoice. Editing here never issues, sends, or records a payment.</div><div class="totals"><div class="total-line"><span>Subtotal</span><strong id="ed-sub">—</strong></div><div class="total-line"><span>'+(state.profile==='rental'?'Tax':'Tax')+'</span><strong id="ed-tax">—</strong></div><div class="total-line due"><span>Total due</span><strong id="ed-total">—</strong></div></div></div></div>';
+    $('#dialog-foot').innerHTML='<span class="secondary-text">Demo only · edits are not saved</span><div><button class="btn" data-action="close">Close</button><button class="btn primary" data-action="save-invoice" data-id="'+inv.id+'">Save draft</button></div>';
+    overlay.classList.add('show');
+    document.querySelectorAll('#editor-lines input').forEach(function(el){el.addEventListener('input',function(){recalc()})});
+    recalc();
+  }
+  function recalc(){
+    var sub=0;
+    document.querySelectorAll('#editor-lines tbody tr').forEach(function(tr){
+      var idx=tr.getAttribute('data-line');
+      var qty=parseFloat(tr.querySelector('[data-field="qty"]').value)||0;
+      var rate=parseFloat(tr.querySelector('[data-field="rate"]').value)||0;
+      var amt=cents(qty*rate);sub+=amt;
+      var cell=tr.querySelector('[data-line-total="'+idx+'"]');if(cell)cell.textContent=money(amt/100);
+    });
+    var tax=0; // Rental tax stays zero; construction demo also zero here
+    $('#ed-sub').textContent=money(sub/100);
+    $('#ed-tax').textContent=money(tax/100);
+    $('#ed-total').textContent=money((sub+tax)/100);
+  }
+  function collectLines(){
+    var lines=[];
+    document.querySelectorAll('#editor-lines tbody tr').forEach(function(tr){
+      lines.push({description:tr.querySelector('[data-field="description"]').value,qty:parseFloat(tr.querySelector('[data-field="qty"]').value)||0,rate:parseFloat(tr.querySelector('[data-field="rate"]').value)||0});
+    });
+    return lines;
+  }
+
+  function focusEl(id){var el=document.getElementById(id);if(el){el.focus();try{el.setSelectionRange(el.value.length,el.value.length)}catch(_){}}}
+  function onClientSearch(e){state.query=e.target.value;state.pageIndex=0;render();focusEl('client-search')}
+  function onInvSearch(e){state.invQuery=e.target.value;state.invPage=0;render();focusEl('inv-search')}
+  function render(){
+    renderNav();
+    var html=state.page==='dashboard'?dashboard():state.page==='clients'?clientsPage():state.page==='client'?clientProfile():invoicesPage();
+    app.innerHTML=html;
+    var cs=$('#client-search');if(cs)cs.addEventListener('input',onClientSearch);
+    var is=$('#inv-search');if(is)is.addEventListener('input',onInvSearch);
+    $('#crumb-page').textContent=state.page.charAt(0).toUpperCase()+state.page.slice(1);
+  }
+
+  document.addEventListener('click',function(e){
+    var el=e.target.closest('[data-action]');if(!el)return;
+    var a=el.getAttribute('data-action');
+    if(a==='nav'){state.page=el.getAttribute('data-page');state.query='';state.pageIndex=0;state.invQuery='';state.invPage=0;render();}
+    else if(a==='client'){state.clientId=el.getAttribute('data-id');state.page='client';render();}
+    else if(a==='invoice'){var inv=findInvoice(el.getAttribute('data-id'));if(inv)openEditor(inv);}
+    else if(a==='switch-profile'){state.profile=state.profile==='rental'?'construction':'rental';state.page='dashboard';state.query='';state.pageIndex=0;render();toast('Switched to the <em>'+label()+'</em>. Rental and Construction stay separate.');}
+    else if(a==='prev'){state.pageIndex=Math.max(0,state.pageIndex-1);render();}
+    else if(a==='next'){state.pageIndex++;render();}
+    else if(a==='inv-prev'){state.invPage=Math.max(0,state.invPage-1);render();}
+    else if(a==='inv-next'){state.invPage++;render();}
+    else if(a==='export'){var rows=['client,email,building,unit,invoices,billed,paid,open'].concat(clients().map(function(c){return [c.name,c.email,c.building,c.unit||c.job,c.invoices.length,(c.billed/100).toFixed(2),(c.paid/100).toFixed(2),(c.open/100).toFixed(2)].join(',')}));var blob=new Blob([rows.join('\n')],{type:'text/csv'});var u=URL.createObjectURL(blob);var link=document.createElement('a');link.href=u;link.download=state.profile+'-clients.csv';link.click();URL.revokeObjectURL(u);toast('Downloaded <em>'+state.profile+'-clients.csv</em>');}
+    else if(a==='new-invoice'){var cid=el.getAttribute('data-id');var c=cid?clients().find(function(x){return x.id===cid}):clients()[0];var inv={id:'new-'+Date.now(),number:'DRAFT',client:c?c.name:'',kind:state.profile,issueDate:TODAY,dueDate:TODAY,lines:[{description:state.profile==='construction'?'Work description':'Rent','qty':1,'rate':0}],status:'Draft',paid:0,balance:0};openEditor(inv);}
+    else if(a==='add-line'){var tb=document.querySelector('#editor-lines tbody');var idx=tb.children.length;var tr=document.createElement('tr');tr.setAttribute('data-line',idx);tr.innerHTML='<td><input class="input" data-field="description" data-idx="'+idx+'" value=""></td><td style="width:70px"><input class="input" data-field="qty" data-idx="'+idx+'" type="number" value="1"></td><td style="width:110px"><input class="input" data-field="rate" data-idx="'+idx+'" type="number" value="0"></td><td class="money" data-line-total="'+idx+'">$0.00</td><td><button class="mini-action" data-action="remove-line" data-idx="'+idx+'">×</button></td>';tb.appendChild(tr);tr.querySelectorAll('input').forEach(function(i){i.addEventListener('input',recalc)});recalc();}
+    else if(a==='remove-line'){var tr=el.closest('tr');if(tr&&document.querySelectorAll('#editor-lines tbody tr').length>1)tr.remove();recalc();}
+    else if(a==='save-invoice'){toast('Demo only — <em>nothing was issued, sent, or recorded</em>.');closeDialog();}
+    else if(a==='close'){closeDialog();}
   });
-  document.addEventListener('submit',e=>{if(e.target.id==='invoice-form'){e.preventDefault();submitInvoice(e.target)}else if(e.target.id==='payment-form'){e.preventDefault();submitPayment(e.target)}else if(e.target.id==='expense-form'){e.preventDefault();submitExpense(e.target)}});
-  document.addEventListener('input',e=>{if(e.target.id==='rent-search'){rentQuery=e.target.value;rentPageIndex=0;render();const x=$('#rent-search');x.focus();x.setSelectionRange(x.value.length,x.value.length)}else if(e.target.id==='invoice-search'){invoiceQuery=e.target.value;render();const x=$('#invoice-search');x.focus();x.setSelectionRange(x.value.length,x.value.length)}else if(e.target.id==='expense-search'){expenseQuery=e.target.value;render();const x=$('#expense-search');x.focus();x.setSelectionRange(x.value.length,x.value.length)}});
-  document.addEventListener('change',e=>{if(e.target.id==='building-filter'){rentBuilding=e.target.value;rentPageIndex=0;render()}else if(e.target.id==='rent-status'){rentStatus=e.target.value;rentPageIndex=0;render()}else if(e.target.id==='invoice-filter'){moneyFilter=e.target.value;render()}});
-  $('#global-search').addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.value.trim()){rentQuery=e.target.value.trim();go('rent')}});
-  $('#menu-toggle').addEventListener('click',()=>$('#sidebar').classList.toggle('open'));
-  $('#dialog-close').addEventListener('click',closeDialog);overlay.addEventListener('click',e=>{if(e.target===overlay)closeDialog()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDialog()});$('#notification-button').addEventListener('click',()=>toast(`${openUnits().length} rent balances need follow-up`,`${leaseAlerts().length} lease dates coming up`));
+  function closeDialog(){overlay.classList.remove('show');$('#dialog').classList.remove('wide')}
+  $('#dialog-close').addEventListener('click',closeDialog);
+  overlay.addEventListener('click',function(e){if(e.target===overlay)closeDialog()});
+  $('#menu-toggle').addEventListener('click',function(){$('#sidebar').classList.toggle('open')});
+  $('#global-search').addEventListener('input',function(e){state.query=e.target.value;state.pageIndex=0;state.page='clients';render();focusEl('client-search')});
+
   render();
+  window.__demoReady=true;
 })();
 </script>
 </body>
